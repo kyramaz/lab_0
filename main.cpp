@@ -1,58 +1,78 @@
-#define _USE_MATH_DEFINES
 #include <iostream>
 #include <math.h>
 using namespace std;
 
-class Circle
+#pragma pack(1)
+
+class Rect
 {
-private:
-	double m_radius;
 public:
-	Circle(double radius)
-	{
-		m_radius = radius;
-	}
-	Circle()
-	{
-		m_radius = 1;
-	}
-	Circle(Circle &A)
-	{
-		m_radius = A.get_r();
-	}
-	~Circle()
-	{
 
-	}	
-
-	double get_r()
+	Rect()
 	{
-		return m_radius;
-	}
-	void set_r(double radius)
-	{
-		m_radius = radius;
+		m_A = 1;
+		m_B = 1;
 	}
 
-	void show_r()
+	Rect(double a, double b)
 	{
-		cout << m_radius;
+		m_A = a;
+		m_B = b;
 	}
 
-	double square_of_circle()
+	~Rect()
 	{
-		return (M_PI * pow(m_radius, 2));
+
 	}
+
+	int getA()
+	{
+		return m_A;
+	}
+	int getB()
+	{
+		return m_B;
+	}
+
+
+	int setA(int a)
+	{
+		return m_A = a;
+	}
+	int setB(int b)
+	{
+		return m_B = b;
+	}
+	
+
+	double dop()
+	{
+		double& x = m_A;
+		double* y = &m_B;
+		return x + *y + P;
+	}
+	void link()
+	{
+		double num = 100;
+		X = &m_A;
+		cout << *X << " " << X << endl;
+		*X = num;
+		cout << *X << " " << X << endl;
+	}
+
+private:
+	double m_A;
+	double m_B;
+	double m_square;
+	const int P = 10;
+	double* X;
 };
 
-int main()
+void main()
 {
-	Circle one(10);
-	cout << one.square_of_circle() << endl;
-	Circle nine = one;
-	cout << nine.square_of_circle();
-	//cout << one.square_of_circle() << endl;
-	//one.set_r(50);
-	//cout << one.get_r() << endl;
-	//cout << one.get_r() << one.square_of_circle();
+	Rect Rectangle(5, 5);
+	Rectangle.setA(20);
+	Rectangle.setB(30);
+	cout << Rectangle.dop() << endl;
+	Rectangle.link();
 }
